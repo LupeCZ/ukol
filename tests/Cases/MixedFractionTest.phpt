@@ -1,17 +1,16 @@
 <?php
 
-namespace LupeCz\Calculator\Tests\Cases;
+namespace MichaelaKarkosova\Calculator\Tests\Cases;
 
 use Tester\Assert;
 use Tester\TestCase;
-use LupeCz\Calculator\Number;
-use LupeCz\Calculator\Fraction;
-use LupeCz\Calculator\MixedFraction;
+use MichaelaKarkosova\Calculator\Number;
+use MichaelaKarkosova\Calculator\Fraction;
+use MichaelaKarkosova\Calculator\MixedFraction;
 
-require __DIR__ . '/../bootstrap.php';
+require __DIR__ . "/../bootstrap.php";
 
-final class MixedFractionTest extends TestCase
-{
+final class MixedFractionTest extends TestCase {
 	private MixedFraction $mixedFraction1;
 
 	private MixedFraction $mixedFraction2;
@@ -24,8 +23,7 @@ final class MixedFractionTest extends TestCase
 
 	private Fraction $fraction3;
 
-	protected function setUp(): void
-	{
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->mixedFraction1 = new MixedFraction(5, 3, 16); // 83/16
@@ -37,8 +35,7 @@ final class MixedFractionTest extends TestCase
 		$this->fraction3 = $this->mixedFraction3->toSimpleFraction();
 	}
 
-	public function testFractionGetNumerator(): void
-	{
+	public function testFractionGetNumerator(): void {
 		Assert::same(3, $this->mixedFraction1->getNumerator());
 		Assert::same(5, $this->mixedFraction2->getNumerator());
 		Assert::same(1, $this->mixedFraction3->getNumerator());
@@ -48,8 +45,7 @@ final class MixedFractionTest extends TestCase
 		Assert::same(1, $this->fraction3->getNumerator());
 	}
 
-	public function testFractionGetDenominator(): void
-	{
+	public function testFractionGetDenominator(): void {
 		Assert::same(16, $this->mixedFraction1->getDenominator());
 		Assert::same(12, $this->mixedFraction2->getDenominator());
 		Assert::same(3, $this->mixedFraction3->getDenominator());
@@ -59,19 +55,17 @@ final class MixedFractionTest extends TestCase
 		Assert::same(3, $this->fraction3->getDenominator());
 	}
 
-	public function testFractionGetResult(): void
-	{
-		Assert::same('5 3/16', $this->mixedFraction1->getResult());
-		Assert::same('-4 5/12', $this->mixedFraction2->getResult());
-		Assert::same('1/3', $this->mixedFraction3->getResult());
+	public function testFractionGetResult(): void {
+		Assert::same("5 3/16", $this->mixedFraction1->getResult());
+		Assert::same("-4 5/12", $this->mixedFraction2->getResult());
+		Assert::same("1/3", $this->mixedFraction3->getResult());
 
-		Assert::same('83/16', $this->fraction1->getResult());
-		Assert::same('-53/12', $this->fraction2->getResult());
-		Assert::same('1/3', $this->fraction3->getResult());
+		Assert::same("83/16", $this->fraction1->getResult());
+		Assert::same("-53/12", $this->fraction2->getResult());
+		Assert::same("1/3", $this->fraction3->getResult());
 	}
 
-	public function testMixedFractionGetWholeNumber(): void
-	{
+	public function testMixedFractionGetWholeNumber(): void {
 		Assert::same(5, $this->mixedFraction1->getWholeNumber());
 		Assert::same(-4, $this->mixedFraction2->getWholeNumber());
 		Assert::same(0, $this->mixedFraction3->getWholeNumber());

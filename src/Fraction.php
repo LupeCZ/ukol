@@ -1,6 +1,6 @@
 <?php
 
-namespace LupeCz\Calculator;
+namespace MichaelaKarkosova\Calculator;
 
 use InvalidArgumentException;
 
@@ -12,14 +12,14 @@ final class Fraction implements FractionInterface {
 
 	public function __construct(int $numerator, int $denominator) {
 		if ($denominator === 0) {
-			throw new InvalidArgumentException('Dividing by zero!');
+			throw new InvalidArgumentException("Dividing by zero!");
 		}
 
 		$this->reduce($numerator, $denominator);
 	}
 
-	public function getResult() : string{
-		return $this->getNumerator() . '/' . $this->getDenominator();
+	public function getResult() : string {
+		return $this->getNumerator() . "/" . $this->getDenominator();
 	}
 
 	public function toMixedFraction(): MixedFraction {
@@ -30,18 +30,15 @@ final class Fraction implements FractionInterface {
 		return new MixedFraction($diff, $numerator, $this->denominator);
 	}
 
-	public function toSimpleFraction(): Fraction
-	{
+	public function toSimpleFraction(): Fraction {
 		return new self($this->numerator, $this->denominator);
 	}
 
-	public function getNumerator(): int
-	{
+	public function getNumerator(): int {
 		return $this->numerator;
 	}
 
-	public function getDenominator(): int
-	{
+	public function getDenominator(): int {
 		return $this->denominator;
 	}
 

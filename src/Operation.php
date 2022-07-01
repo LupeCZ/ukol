@@ -1,6 +1,6 @@
 <?php
 
-namespace LupeCz\Calculator;
+namespace MichaelaKarkosova\Calculator;
 
 final class Operation implements OperationInterface {
 
@@ -17,7 +17,8 @@ final class Operation implements OperationInterface {
 	public function subtract(NumberInterface $fraction, NumberInterface $fraction2) : FractionInterface {
 		$fraction = $fraction->toSimpleFraction();
 		$fraction2 = $fraction2->toSimpleFraction();
-
+        var_dump($fraction);
+        var_dump($fraction2);
 		$numerator = ($fraction->getNumerator() * $fraction2->getDenominator()) - ($fraction2->getNumerator() * $fraction->getDenominator());
 		$denominator = $fraction->getDenominator() * $fraction2->getDenominator();
 

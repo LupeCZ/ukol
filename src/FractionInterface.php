@@ -1,6 +1,6 @@
 <?php
 
-namespace LupeCz\Calculator;
+namespace MichaelaKarkosova\Calculator;
 
 interface FractionInterface extends NumberInterface {
 	public function getNumerator(): int;

@@ -1,8 +1,8 @@
 <?php
 
-use LupeCZ\Calculator\Operation;
-use LupeCZ\Calculator\MixedFraction;
-use LupeCZ\Calculator\Fraction;
+use MichaelaKarkosova\Calculator\Operation;
+use MichaelaKarkosova\Calculator\MixedFraction;
+use MichaelaKarkosova\Calculator\Fraction;
 
 $operationController = new Operation();
 $mixedFraction2 = new MixedFraction(5, 40, 6);

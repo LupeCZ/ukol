@@ -1,6 +1,6 @@
 <?php
 
-namespace LupeCz\Calculator;
+namespace MichaelaKarkosova\Calculator;
 
 interface OperationInterface{
 	public function add(NumberInterface $fraction, NumberInterface $fraction2) : FractionInterface;

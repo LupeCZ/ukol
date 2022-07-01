@@ -1,8 +1,11 @@
 <?php
 
-namespace LupeCz\Calculator;
+namespace MichaelaKarkosova\Calculator;
 
-class MixedFraction implements FractionInterface{
+
+use InvalidArgumentException;
+
+class MixedFraction implements FractionInterface {
 
 	protected int $wholeNumber;
 
@@ -32,21 +35,20 @@ class MixedFraction implements FractionInterface{
 		$num = $this->getNumerator();
 		$den = $this->getDenominator();
 		$whole = $this->getWholeNumber();
-
 		if ($whole === 0) {
 			return $num . "/" . $den;
 		}
-
-		if ($num === 0){
+		if ($num === 0 || $den === 1) {
 			return $whole;
 		}
-
 		return $whole . " " . $num . "/" . $den;
 	}
 
 	public function toSimpleFraction(): Fraction {
-		$numerator = (abs($this->wholeNumber) * $this->denominator) + $this->numerator;
-
+        if ($this->numerator < 0 || $this->denominator < 0) {
+            throw new InvalidArgumentException("Mixed Fractions can't have negative numerator and denominator!");
+        }
+        $numerator = (abs($this->wholeNumber) * $this->denominator) + $this->numerator;
 		if ($this->wholeNumber < 0) {
 			$numerator *= -1;
 		}

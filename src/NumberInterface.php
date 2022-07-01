@@ -1,6 +1,6 @@
 <?php
 
-namespace LupeCz\Calculator;
+namespace MichaelaKarkosova\Calculator;
 
 interface NumberInterface {
 	public function toSimpleFraction() : Fraction;
