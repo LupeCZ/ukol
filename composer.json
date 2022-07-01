@@ -1,0 +1,29 @@
+{
+	"name": "lupecz/calculator",
+	"description": "",
+	"keywords": [],
+	"license": "proprietary",
+	"require": {
+		"php": "^7.4"
+	},
+	"require-dev": {
+		"nette/tester": "^2.4",
+		"roave/security-advisories": "dev-latest"
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"autoload": {
+		"psr-4": {
+			"LupeCz\\Calculator\\": "src/"
+		},
+		"files": [
+			"functions.php"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"LupeCz\\Calculator\\Tests\\": "tests/"
+		}
+	}
+}
