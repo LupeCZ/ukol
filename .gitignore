@@ -2,7 +2,7 @@ Dockerfile
 docker-compose.yml
 installer
 installer-run
-composer.lock
 functions.php
+composer.lock
 vendor
 .idea

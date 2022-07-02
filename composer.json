@@ -5,7 +5,7 @@
 	"license": "proprietary",
 	"require": {
 		"php": "^7.4",
-      "ext-gmp": "*"
+        "ext-gmp": "*"
     },
 	"require-dev": {
 		"nette/tester": "^2.4",

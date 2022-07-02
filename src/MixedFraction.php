@@ -2,11 +2,9 @@
 
 namespace MichaelaKarkosova\Calculator;
 
-
 use InvalidArgumentException;
 
 class MixedFraction implements FractionInterface {
-
 	protected int $wholeNumber;
 
 	protected int $numerator;
@@ -52,7 +50,6 @@ class MixedFraction implements FractionInterface {
 		if ($this->wholeNumber < 0) {
 			$numerator *= -1;
 		}
-
 		return new Fraction($numerator, $this->denominator);
 	}
 
