@@ -4,6 +4,7 @@ namespace MichaelaKarkosova\Calculator\Tests\Cases;
 
 use MichaelaKarkosova\Calculator\FractionInterface;
 use MichaelaKarkosova\Calculator\Math;
+use MichaelaKarkosova\Calculator\NumberFactory;
 use MichaelaKarkosova\Calculator\Operation;
 use Tester\Assert;
 use Tester\TestCase;
@@ -17,6 +18,7 @@ final class OperationTest extends TestCase {
 
     private Operation $operation;
     private Math $math;
+    private NumberFactory $numberFactory;
 
     private FractionInterface $result1;
     private FractionInterface  $result2;
@@ -31,8 +33,10 @@ final class OperationTest extends TestCase {
 
     protected function setUp(): void {
         parent::setUp();
+
         $this->operation = new Operation();
-        $this->math = new Math($this->operation);
+        $this->numberFactory = new NumberFactory();
+        $this->math = new Math($this->operation, $this->numberFactory);
     }
 
     public function testOperationAdd() : void {

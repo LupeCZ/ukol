@@ -6,9 +6,9 @@ class Math {
     private Operation $operation;
     private NumberFactory $numberFactory;
 
-    public function __construct(Operation $operation) {
+    public function __construct(Operation $operation, NumberFactory $numberFactory) {
         $this->operation = $operation;
-        $this->numberFactory = new NumberFactory();
+        $this->numberFactory = $numberFactory;
     }
 
     public function add($numberA, $numberB): FractionInterface {
