@@ -4,11 +4,11 @@ namespace MichaelaKarkosova\Calculator;
 
 class Math {
     private Operation $operation;
-    private NumberFactoryClass $numberFactory;
+    private NumberFactory $numberFactory;
 
     public function __construct(Operation $operation) {
         $this->operation = $operation;
-        $this->numberFactory = new NumberFactoryClass();
+        $this->numberFactory = new NumberFactory();
     }
 
     public function add($numberA, $numberB): FractionInterface {
