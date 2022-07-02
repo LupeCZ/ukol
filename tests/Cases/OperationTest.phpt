@@ -3,6 +3,7 @@
 namespace MichaelaKarkosova\Calculator\Tests\Cases;
 
 use MichaelaKarkosova\Calculator\FractionInterface;
+use MichaelaKarkosova\Calculator\Math;
 use MichaelaKarkosova\Calculator\Operation;
 use Tester\Assert;
 use Tester\TestCase;
@@ -15,6 +16,7 @@ require __DIR__ . "/../bootstrap.php";
 final class OperationTest extends TestCase {
 
     private Operation $operation;
+    private Math $math;
 
     private FractionInterface $result1;
     private FractionInterface  $result2;
@@ -30,19 +32,23 @@ final class OperationTest extends TestCase {
     protected function setUp(): void {
         parent::setUp();
         $this->operation = new Operation();
+        $this->math = new Math($this->operation);
     }
 
     public function testOperationAdd() : void {
-        $this->result1 = $this->operation->add(new Fraction(5, 10), new MixedFraction(5,10,20));
-        $this->result2 = $this->operation->add(new Fraction(15, 2), new MixedFraction(10,6,2));
-        $this->result3 = $this->operation->add(new Fraction(-50,-30), new Fraction(-20,-5));
-        $this->result4 = $this->operation->add(new MixedFraction(-4, 20, 4), new MixedFraction(10,6,2));
-        $this->result5 = $this->operation->add(new Fraction(-15, 2), new MixedFraction(6,12,2));
-        $this->result6 = $this->operation->add(new Number(5), new MixedFraction(-6,12,2));
-        $this->result7 = $this->operation->add(new Fraction(-15, 2), new Number(-50));
-        $this->result8 = $this->operation->add(new Number(5), new Number(-50));
-        $this->result9 = $this->operation->add(new Number(-15), new Number(-45));
-        $this->result10 = $this->operation->add(new Number(59), new Number(95));
+
+        $this->result1 = $this->math->subtract("5/10", "5 20/3");
+        Assert::same("-67/6", $this->result1->getResult());
+        $this->result1 = $this->math->add("5/10", "5 10/20");
+        $this->result2 = $this->math->add("15/2", "10 6/2");
+        $this->result3 = $this->math->add("-50/-30", "-20/-5");;
+        $this->result4 = $this->math->add("-4 20/4", "10 6/2");
+        $this->result5 = $this->math->add("-15/2", "6 12/2");
+        $this->result6 = $this->math->add(5, "-6 12/2");
+        $this->result7 = $this->math->add("-15/2", -50);
+        $this->result8 = $this->math->add(5, -50);
+        $this->result9 = $this->math->add(-15, -45);
+        $this->result10 = $this->math->add(-59, -95);
 
         Assert::same("6/1", $this->result1->getResult());
         Assert::same("41/2", $this->result2->getResult());
@@ -53,20 +59,20 @@ final class OperationTest extends TestCase {
         Assert::same("-115/2", $this->result7->getResult());
         Assert::same("-45/1", $this->result8->getResult());
         Assert::same("-60/1", $this->result9->getResult());
-        Assert::same("154/1", $this->result10->getResult());
+        Assert::same("-154/1", $this->result10->getResult());
     }
 
     public function testOperationSubtract() : void {
-        $this->result1 = $this->operation->subtract(new Fraction(5, 10), new MixedFraction(5,10,20));
-        $this->result2 = $this->operation->subtract(new Fraction(15, 2), new MixedFraction(10,6,2));
-        $this->result3 = $this->operation->subtract(new Fraction(-50,-30), new Fraction(-20,-5));
-        $this->result4 = $this->operation->subtract(new MixedFraction(-4, 20, 4), new MixedFraction(10,6,2));
-        $this->result5 = $this->operation->subtract(new Fraction(-15, 2), new MixedFraction(6,12,2));
-        $this->result6 = $this->operation->subtract(new Number(5), new MixedFraction(-6,12,2));
-        $this->result7 = $this->operation->subtract(new Fraction(-15, 2), new Number(-50));
-        $this->result8 = $this->operation->subtract(new Number(5), new Number(-50));
-        $this->result9 = $this->operation->subtract(new Number(-15), new Number(-45));
-        $this->result10 = $this->operation->subtract(new Number(59), new Number(95));
+        $this->result1 = $this->math->subtract("5/10", "5 10/20");
+        $this->result2 = $this->math->subtract("15/2", "10 6/2");
+        $this->result3 = $this->math->subtract("-50/-30", "-20/-5");;
+        $this->result4 = $this->math->subtract("-4 20/4", "10 6/2");
+        $this->result5 = $this->math->subtract("-15/2", "6 12/2");
+        $this->result6 = $this->math->subtract(5, "-6 12/2");
+        $this->result7 = $this->math->subtract("-15/2", -50);
+        $this->result8 = $this->math->subtract(5, -50);
+        $this->result9 = $this->math->subtract(-15, -45);
+        $this->result10 = $this->math->subtract(59, 95);
 
         Assert::same("-5/1", $this->result1->getResult());
         Assert::same("-11/2", $this->result2->getResult());
@@ -81,16 +87,16 @@ final class OperationTest extends TestCase {
     }
 
     public function testOperationMultiply() : void {
-        $this->result1 = $this->operation->multiply(new Fraction(5, 10), new MixedFraction(5,10,20));
-        $this->result2 = $this->operation->multiply(new Fraction(15, 2), new MixedFraction(10,6,2));
-        $this->result3 = $this->operation->multiply(new Fraction(-50,-30), new Fraction(-20,-5));
-        $this->result4 = $this->operation->multiply(new MixedFraction(-4, 20, 4), new MixedFraction(10,6,2));
-        $this->result5 = $this->operation->multiply(new Fraction(-15, 2), new MixedFraction(6,12,2));
-        $this->result6 = $this->operation->multiply(new Number(5), new MixedFraction(-6,12,2));
-        $this->result7 = $this->operation->multiply(new Fraction(-15, 2), new Number(-50));
-        $this->result8 = $this->operation->multiply(new Number(5), new Number(-50));
-        $this->result9 = $this->operation->multiply(new Number(-15), new Number(-45));
-        $this->result10 = $this->operation->multiply(new Number(59), new Number(95));
+        $this->result1 = $this->math->multiply("5/10", "5 10/20");
+        $this->result2 = $this->math->multiply("15/2", "10 6/2");
+        $this->result3 = $this->math->multiply("-50/-30", "-20/-5");;
+        $this->result4 = $this->math->multiply("-4 20/4", "10 6/2");
+        $this->result5 = $this->math->multiply("-15/2", "6 12/2");
+        $this->result6 = $this->math->multiply(5, "-6 12/2");
+        $this->result7 = $this->math->multiply("-15/2", -50);
+        $this->result8 = $this->math->multiply(5, -50);
+        $this->result9 = $this->math->multiply(-15, -45);
+        $this->result10 = $this->math->multiply(59, 95);
 
         Assert::same("11/4", $this->result1->getResult());
         Assert::same("195/2", $this->result2->getResult());
@@ -105,16 +111,16 @@ final class OperationTest extends TestCase {
     }
 
     public function testOperationDivide() : void {
-        $this->result1 = $this->operation->divide(new Fraction(5, 10), new MixedFraction(5,10,20));
-        $this->result2 = $this->operation->divide(new Fraction(15, 2), new MixedFraction(10,6,2));
-        $this->result3 = $this->operation->divide(new Fraction(-50,-30), new Fraction(-20,-5));
-        $this->result4 = $this->operation->divide(new MixedFraction(-4, 20, 4), new MixedFraction(10,6,2));
-        $this->result5 = $this->operation->divide(new Fraction(-15, 2), new MixedFraction(6,12,2));
-        $this->result6 = $this->operation->divide(new Number(5), new MixedFraction(-6,12,2));
-        $this->result7 = $this->operation->divide(new Fraction(-15, 2), new Number(-50));
-        $this->result8 = $this->operation->divide(new Number(5), new Number(-50));
-        $this->result9 = $this->operation->divide(new Number(-15), new Number(-45));
-        $this->result10 = $this->operation->divide(new Number(59), new Number(95));
+        $this->result1 = $this->math->divide("5/10", "5 10/20");
+        $this->result2 = $this->math->divide("15/2", "10 6/2");
+        $this->result3 = $this->math->divide("-50/-30", "-20/-5");;
+        $this->result4 = $this->math->divide("-4 20/4", "10 6/2");
+        $this->result5 = $this->math->divide("-15/2", "6 12/2");
+        $this->result6 = $this->math->divide(5, "-6 12/2");
+        $this->result7 = $this->math->divide("-15/2", -50);
+        $this->result8 = $this->math->divide(5, -50);
+        $this->result9 = $this->math->divide(-15, -45);
+        $this->result10 = $this->math->divide(59, 95);
 
         Assert::same("1/11", $this->result1->getResult());
         Assert::same("15/26", $this->result2->getResult());

@@ -3,5 +3,5 @@
 namespace MichaelaKarkosova\Calculator;
 
 interface NumberInterface {
-	public function toSimpleFraction() : Fraction;
+    public function toSimpleFraction() : Fraction;
 }
