@@ -11,9 +11,8 @@ class Number implements NumberInterface {
 		$stringNumber = (string) (float) $number;
 		$decimal = strpos($stringNumber, '.') !== false ? explode(".", $stringNumber)[1] : "";
 		$decimalLength = strlen($decimal);
-
 		$this->precision = $decimal !== 0 ? 10 ** $decimalLength : 1;
-		$this->numerator = (int) ($number * $this->precision);
+		$this->numerator = (int) (string) ($number * $this->precision);
 	}
 
 	public function toSimpleFraction(): Fraction {
